@@ -2,8 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create</title>
+    <title>게시글 생성</title>
 </head>
 <body>
+<!-- 사용자가 게시글을 입력할 수 있는 창구-->
+<h1>Create Article</h1>
+<!-- action으로 Controller의 create로 보냈음-->
+<form action="/article/create" method="post">
+    <!-- 게시글의 제목을 입력받는 부분 -->
+    <label for="title-input">
+        Title: <input id="title-input" name="title">
+    </label><br>
+    <!-- 게시글의 내용을 입력받기 위한 input-->
+    <label for="content-input">
+        Content: <input type="text" id="content-input" name="content">
+    </label><br>
+    <label for="password-input">
+        Password: <input type="password" id="password-input" name="password">
+    </label><br><br>
+    <!-- 제출 버튼   -->
+    <input type="submit">
+    <br>
+</form>
+<a href="/home">Home</a>
 </body>
 </html>
