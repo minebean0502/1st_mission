@@ -72,6 +72,6 @@ public class ArticleService {
             articleList.remove(target);
             return true;
         }
-        return false;
+        else return false;
     }
 }

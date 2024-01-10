@@ -129,11 +129,18 @@ public class ArticleController {
             @PathVariable("id")
             Long id,
             @RequestParam("password")
-            String password
+            String password,
+            RedirectAttributes redirectAttributes
     ) {
         System.out.println("delete까지 왔어용");
-        service.deleteArticle(id, password);
-        return "redirect:/home/1";
+        //service.deleteArticle(id, password);
+        if (service.deleteArticle(id, password)) {
+            return "redirect:/home/1";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
+            return String.format("redirect:/delete-view/%s", id);
+        }
     }
 
     /*

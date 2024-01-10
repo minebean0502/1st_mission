@@ -6,8 +6,11 @@
 </head>
 <body>
 <h1>Delete: [[${article.id}]]. [[${article.title}]]?</h1>
+<div th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
 <form th:action="@{/delete/{id}(id=${article.id})}" method="post">
-    <label for="password">비밀번호: <input id="password" name="password"></label><br>
+    <label for="password">비밀번호: <input type="password" id="password" name="password"></label><br>
     <input type="submit" value="삭제">
 </form>
 <!-- 뒤로가기 버튼을 누르면, readone으로 돌아간다-->
