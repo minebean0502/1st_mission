@@ -30,7 +30,7 @@ public class ArticleController {
     // 사용자가 게시글을 생성(입력)하는 곳임(사용자로부터 메세지 전달)
     @GetMapping("/createArticle-view")
     public String createArticleView(Model model) {
-//        System.out.println("createArticle-view까진 작동합니다");
+        // 아래는 게시판 확인용
         List<Board> boards = boardService.readBoardAll();
         System.out.println(boards);
         model.addAttribute("boards", boardService.readBoardAll());

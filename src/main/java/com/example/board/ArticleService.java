@@ -73,6 +73,12 @@ public class ArticleService {
         return articles;
     }
 
+    // 특정 classification_id에 해당하는 게시글 목록 조회
+    // -> articleRepo에도 기능 추가해줘야함
+    public List<Article> getArticleByClassId(Long classificationId) {
+        return articleRepository.findByClassificationId(classificationId);
+    }
+
 
     /* # 기능 이전입니다 : 01-11
     // 현재 등록된 모든 게시글들을 반환한다.
