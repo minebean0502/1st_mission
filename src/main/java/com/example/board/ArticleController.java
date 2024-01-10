@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
 public class ArticleController {
 
     private ArticleService service;
+
     public ArticleController(ArticleService service) {
         this.service = service;
     }
@@ -95,11 +97,18 @@ public class ArticleController {
             @RequestParam("title")
             String title,
             @RequestParam("content")
-            String content
+            String content,
+            @RequestParam("password")
+            String password,
+            RedirectAttributes redirectAttributes
     ) {
         log.info(title);
         log.info(content);
-        ArticleDto dto = service.updateArticle(id, title, content);
+        ArticleDto dto = service.updateArticle(id, title, content, password);
+        if (dto == null) {
+            redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
+            return String.format("redirect:/update-view/%s", id);
+        }
         return String.format("redirect:/read/%s", dto.getId());
     }
 

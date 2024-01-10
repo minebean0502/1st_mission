@@ -43,9 +43,14 @@ public class ArticleService {
 
     // 어떤 게시글의 정보를 바꿀건지를 나타내는 id
 
-    public ArticleDto updateArticle(Long id, String title, String content) {
+    public ArticleDto updateArticle(
+            Long id,
+            String title,
+            String content,
+            String password) {
         for (ArticleDto articleDto: articleList) {
-            if (articleDto.getId().equals(id)) {
+            if (articleDto.getId().equals(id)
+                    && articleDto.getPassword().equals(password)) {
                 articleDto.setTitle(title);
                 articleDto.setContent(content);
                 return articleDto;

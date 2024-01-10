@@ -6,9 +6,10 @@
 </head>
 <body>
 <h1>Update: [[${article.id}]]. [[${article.title}]]</h1>
+<div th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
 <form th:action="@{/update/{id}(id=${article.id})}" method="post">
-
-
     <label for="title-input">
         Title: <input id="title-input" name="title" th:value="${article.title}">
     </label><br>
