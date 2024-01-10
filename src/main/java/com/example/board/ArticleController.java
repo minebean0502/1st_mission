@@ -68,6 +68,8 @@ public class ArticleController {
             Long id,
             Model model
     ) {
+        System.out.println("readOne 왔어요");
+        System.out.println("게시글 상세조회 페이지에요");
         ArticleDto dto = service.readArticle(id);
         model.addAttribute("article", dto);
         return "article/read";
@@ -101,6 +103,29 @@ public class ArticleController {
         return String.format("redirect:/read/%s", dto.getId());
     }
 
+    @GetMapping("/delete-view/{id}")
+    public String deleteView(
+            @PathVariable("id")
+            Long id,
+            Model model
+    ) {
+        System.out.println("delete view까진 왔음");
+        ArticleDto dto = service.readArticle(id);
+        model.addAttribute("article", dto);
+        return "article/delete";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(
+            @PathVariable("id")
+            Long id,
+            @RequestParam("password")
+            String password
+    ) {
+        System.out.println("delete까지 왔어용");
+        service.deleteArticle(id, password);
+        return "redirect:/home/1";
+    }
 
     /*
     @GetMapping("read/{id}")

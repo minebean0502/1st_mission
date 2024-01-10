@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 삭제</title>
+</head>
+<body>
+<h1>Delete: [[${article.id}]]. [[${article.title}]]?</h1>
+<form th:action="@{/delete/{id}(id=${article.id})}" method="post">
+    <label for="password">비밀번호: <input id="password" name="password"></label><br>
+    <input type="submit" value="삭제">
+</form>
+<!-- 뒤로가기 버튼을 누르면, readone으로 돌아간다-->
+<a th:href="@{/read/{id}(id=${article.id})}">Back</a>
+</body>
+</html>

@@ -53,4 +53,20 @@ public class ArticleService {
         }
         return null;
     }
+
+    public boolean deleteArticle(Long id, String password) {
+        int target = -1;
+        for (int i = 0; i < articleList.size(); i++) {
+            if (articleList.get(i).getId().equals(id)
+                    && articleList.get(i).getPassword().equals(password)) {
+                target = i;
+                break;
+            }
+        }
+        if (target != -1) {
+            articleList.remove(target);
+            return true;
+        }
+        return false;
+    }
 }

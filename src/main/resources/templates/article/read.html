@@ -21,7 +21,12 @@
 <!--    <p>게시글 내용: [[${article.content}]]</p>-->
 <!--</div>-->
 <!--<hr>-->
-<a th:href="@{/update-view/{id}(id=${article.id})}">수정하기</a>
+    <a th:href="@{/update-view/{id}(id=${article.id})}">수정하기</a><br>
+<!--    <form th:action="@{/delete-view/{id}(id=${article.id})}" method="post">-->
+<!--        <input type="submit" value="Delete"> 삭제하기-->
+<!--    </form>-->
+
+    <a th:href="@{/delete-view/{id}(id=${article.id})}">삭제하기</a><br>
 <a href="/home/1">돌아가기</a>
 </body>
 </html>
