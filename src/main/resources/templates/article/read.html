@@ -8,24 +8,8 @@
     <h1>[[${article.id}]]. [[${article.title}]]</h1>
     <p>내용: [[${article.content}]]</p><hr>
 
-<!--&lt;!&ndash;게시글이 없을 경우&ndash;&gt;-->
-<!--<div th:if="${articleList.isEmpty()}">-->
-<!--    <h2>[[${article.id}]]. [[${article.title}]]</h2>-->
-<!--    <p>현재 게시글은 비어 있습니다...</p>-->
-<!--</div>-->
-<!--&lt;!&ndash;게시글이 있을 경우&ndash;&gt;-->
-<!--<div th:unless="${articleList.isEmpty()}" th:each="article: ${articleList}">-->
-<!--    <h2>[[${article.id}]]. [[${article.title}]]</h2>-->
-<!--    <p>게시글 번호: [[${article.id}]]</p>-->
-<!--    <p>게시글 제목: [[${article.title}]]</p>-->
-<!--    <p>게시글 내용: [[${article.content}]]</p>-->
-<!--</div>-->
-<!--<hr>-->
-    <a th:href="@{/update-view/{id}(id=${article.id})}">수정하기</a><br>
-<!--    <form th:action="@{/delete-view/{id}(id=${article.id})}" method="post">-->
-<!--        <input type="submit" value="Delete"> 삭제하기-->
-<!--    </form>-->
 
+    <a th:href="@{/update-view/{id}(id=${article.id})}">수정하기</a><br>
     <a th:href="@{/delete-view/{id}(id=${article.id})}">삭제하기</a><br>
 <a href="/home/1">돌아가기</a>
 </body>

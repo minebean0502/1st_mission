@@ -5,7 +5,7 @@ import lombok.Data;
 
 
 @Data
-@AllArgsConstructor
+// @AllArgsConstructor
 public class ArticleDto {
     private Long id;
     private String title;

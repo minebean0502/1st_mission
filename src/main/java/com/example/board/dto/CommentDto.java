@@ -3,8 +3,8 @@ package com.example.board.dto;
 import lombok.Data;
 
 @Data
-public class CommentsDto {
+public class CommentDto {
     private Long id;
     private String context;
-    private Integer password;
+    private String password;
 }
