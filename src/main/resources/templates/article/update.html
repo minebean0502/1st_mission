@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 수정</title>
+</head>
+<body>
+<h1>Update: [[${article.id}]]. [[${article.title}]]</h1>
+<form th:action="@{/update/{id}(id=${article.id})}" method="post">
+
+
+    <label for="title-input">
+        Title: <input id="title-input" name="title" th:value="${article.title}">
+    </label><br>
+
+    <label for="content-input">
+        Content: <input type="text" id="content-input" name="content" th:value="${article.content}">
+    </label><br>
+
+    <label for="password-input">
+        Password: <input type="password" id="password-input" name="password">
+    </label><br><br>
+    <!-- 제출 버튼   -->
+    <input type="submit">
+    <br>
+</form>
+<!-- 수정중에 뒤로가면, 원래 데이터 데이터 읽기 창으로 간다-->
+<a th:href="@{/read/{id}(id=${article.id})}">Back</a>
+
+<a href="/home">Home</a>
+</body>
+</html>

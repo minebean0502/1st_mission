@@ -73,6 +73,34 @@ public class ArticleController {
         return "article/read";
     }
 
+    // /update-view/{id}로 요청 받으면
+    // board/update.html에 article 정보를 포함해 반환하는 메서드
+    @GetMapping("/update-view/{id}")
+    public String updateView(
+            @PathVariable("id")
+            Long id,
+            Model model
+    ) {
+        ArticleDto dto = service.readArticle(id);
+        model.addAttribute("article", dto);
+        return "article/update";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(
+            @PathVariable("id")
+            Long id,
+            @RequestParam("title")
+            String title,
+            @RequestParam("content")
+            String content
+    ) {
+        log.info(title);
+        log.info(content);
+        ArticleDto dto = service.updateArticle(id, title, content);
+        return String.format("redirect:/read/%s", dto.getId());
+    }
+
 
     /*
     @GetMapping("read/{id}")
