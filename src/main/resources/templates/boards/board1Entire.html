@@ -12,7 +12,7 @@
 </div>
 <!--게시글이 있을 경우-->
 <div th:unless="${articleList.isEmpty()}" th:each="article: ${articleList}">
-    <p>게시글 번호: [[${article.id}]] &nbsp;&nbsp;&nbsp;게시글 제목: <a th:href="@{/read/{id}(id=${article.id})}"> [[${article.title}]]</a></p>
+    <p>번호: [[${article.id}]] &nbsp;&nbsp;&nbsp;게시글 제목: <a th:href="@{/read/{id}(id=${article.id})}"> [[${article.title}]]</a></p>
 </div>
 
 <hr>

@@ -9,33 +9,35 @@
 <h1>Create Article</h1>
 <!-- action으로 Controller의 create로 보냈음-->
 <form action="/article/create" method="post">
-    <!-- 게시글의 제목을 입력받는 부분 -->
+    <!-- 게시글의 제목 입력 -->
     <label for="title-input">
-        Title: <input id="title-input" name="title">
+        Title: <input id="title-input" placeholder="제목" type="text" name="title" autocomplete="off" style="width: 100%;">
     </label><br>
-    <!-- 게시글의 내용을 입력받기 위한 input-->
+
+    <!-- 게시글의 내용 입력 -->
     <label for="content-input">
-        Content: <input type="text" id="content-input" name="content">
+        Content: <textarea id="content-input" placeholder="내용" name="content" rows="10" autocomplete="off" style="font-family: Arial, sans-serif; width: 100%;"></textarea>
     </label><br>
+
+    <!-- 비밀번호 입력 -->
     <label for="password-input">
         Password: <input type="password" id="password-input" name="password">
     </label><br>
+
+    <!-- 게시판 선택 -->
     <label>
         게시판:
         <select name="classification-id">
-            <option
-                th:each="board: ${boards}"
-                th:value="${board.id}"
-                th:text="${board.name}"
-            >
-                [[${board.name}]]
+            <option th:each="board : ${boards}"
+                    th:value="${board.id}"
+                    th:text="${board.name}">
+                선택
             </option>
         </select>
     </label><br><br>
 
-    <!-- 제출 버튼   -->
+    <!-- 제출 버튼 -->
     <input type="submit">
-    <br>
 </form>
 <a href="/home">Home</a>
 </body>

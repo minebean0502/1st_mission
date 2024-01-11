@@ -15,7 +15,6 @@
   <p>게시글 번호: <span th:text="${article.id}"></span> &nbsp;&nbsp;&nbsp;게시글 제목: <a th:href="@{/read/{id}(id=${article.id})}" th:text="${article.title}"></a></p>
 </div>
 
-
 <hr>
 <a href="/createArticle-view">게시글 생성하기</a><br>
 <a href="/home">Home</a>

@@ -14,8 +14,14 @@
         Title: <input id="title-input" name="title" th:value="${article.title}">
     </label><br>
 
+<!--    <label for="content-input">-->
+<!--        Content: <input type="text" id="content-input" name="content" th:value="${article.content}">-->
+<!--    </label><br>-->
+<!--    <label for="content-input">-->
+<!--        Content: <textarea id="content-input" name="content" rows="10" style="width: 100%" th:value="${article.content} "></textarea>-->
+<!--    </label><br>-->
     <label for="content-input">
-        Content: <input type="text" id="content-input" name="content" th:value="${article.content}">
+        Content: <textarea id="content-input" name="content" rows="10" style="font-family: Arial, sans-serif; width: 100%;" th:text="${article.content}"></textarea>
     </label><br>
 
     <label for="password-input">

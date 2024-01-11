@@ -5,12 +5,32 @@
     <title>Read</title>
 </head>
 <body>
-    <h1>[[${article.id}]]. [[${article.title}]]</h1>
-    <p>내용: [[${article.content}]]</p><hr>
+<h1>[[${article.id}]]. [[${article.title}]]</h1>
+<p style="font-family: Arial, sans-serif; width: 100%">내용: [[${article.content}]]</p><hr>
 
+<!-- 댓글이 없을 경우 메시지 표시 -->
+<div th:if="${comments.empty}">
+    <p>댓글이 없습니다.</p>
+</div>
 
-    <a th:href="@{/update-view/{id}(id=${article.id})}">수정하기</a><br>
-    <a th:href="@{/delete-view/{id}(id=${article.id})}">삭제하기</a><br>
+<!-- 댓글 목록 표시 -->
+<div th:if="${!comments.empty}" th:each="comment : ${comments}">
+    <p>번호: [[${comment.id}]] &nbsp; 댓글 내용: [[${comment.context}]]
+        <!-- 댓글 삭제 버튼 -->
+        <a th:href="@{/comment/delete-view/{id}(id=${comment.id})}">댓글 삭제</a>
+    </p>
+</div>
+
+<!-- 댓글 작성 폼 -->
+<form action="/comment/create" method="post">
+    <textarea name="context" placeholder="댓글 내용" style="font-family: Arial, sans-serif; width: 100%;"></textarea><br>
+    <input type="password" name="password" placeholder="비밀번호"><br>
+    <input type="hidden" name="articleId" th:value="${article.id}">
+    <input type="submit" value="댓글 작성">
+</form><hr>
+
+<a th:href="@{/update-view/{id}(id=${article.id})}">수정하기</a><br>
+<a th:href="@{/delete-view/{id}(id=${article.id})}">삭제하기</a><br>
 <a href="/home/1">돌아가기</a>
 </body>
 </html>

@@ -6,6 +6,7 @@ import com.example.board.entity.Board;
 import com.example.board.repo.ArticleRepository;
 import com.example.board.repo.BoardRepository;
 import com.example.board.repo.CommentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -184,5 +185,10 @@ public class ArticleService {
         } else {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
+    }
+
+    public Article getArticleById(Long id) {
+        return articleRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Article not found with id: " + id));
     }
 }

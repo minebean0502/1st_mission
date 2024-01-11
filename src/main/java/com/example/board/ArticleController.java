@@ -3,6 +3,7 @@ package com.example.board;
 import com.example.board.dto.ArticleDto;
 import com.example.board.entity.Article;
 import com.example.board.entity.Board;
+import com.example.board.entity.Comment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +20,11 @@ public class ArticleController {
 
     private final ArticleService articleService;
     private final BoardService boardService;
-//    private final CommentService commentService;
-    public ArticleController(ArticleService articleService, BoardService boardService) {
+    private final CommentService commentService;
+    public ArticleController(ArticleService articleService, BoardService boardService, CommentService commentService) {
         this.articleService = articleService;
         this.boardService = boardService;
+        this.commentService = commentService;
     }
 
     // # 기능 수정(view)입니다: 01-11
@@ -75,7 +77,11 @@ public class ArticleController {
             Long id,
             Model model
     ) {
+        Article article = articleService.getArticleById(id);
+        List<Comment> comments = commentService.getCommentsByArticleId(id);
+
         model.addAttribute("article", articleService.readArticle(id));
+        model.addAttribute("comments", comments);
         return "article/read";
     }
 

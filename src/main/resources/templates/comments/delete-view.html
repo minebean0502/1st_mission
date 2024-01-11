@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>댓글 삭제</title>
+</head>
+<body>
+<h1>댓글 삭제</h1>
+<form action="/comments/delete" method="post">
+    <input type="hidden" name="commentId" th:value="${commentId}">
+    <label for="password">비밀번호: </label>
+    <input type="password" id="password" name="password"><br>
+    <input type="hidden" name="articleId" th:value="${articleId}">
+    <input type="submit" value="삭제">
+</form>
+</body>
+</html>
