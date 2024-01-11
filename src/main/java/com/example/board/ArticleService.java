@@ -35,7 +35,7 @@ public class ArticleService {
         // (일치시킬) 게시판을 찾는다.
         Optional<Board> optionalBoard
                 = boardRepository.findById(classificationId);
-        // 게시글에 게시판의 id를 할당한다
+        // 게시글에 게시판의 id를 할당한다.
         article.setClassification(optionalBoard.orElse(null));
 
         // repository의 save 메서드를 호출한다.
