@@ -1,16 +1,14 @@
 package com.example.board;
 
-import com.example.board.dto.ArticleDto;
+
 import com.example.board.entity.Article;
 import com.example.board.entity.Board;
 import com.example.board.repo.ArticleRepository;
 import com.example.board.repo.BoardRepository;
-import com.example.board.repo.CommentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
