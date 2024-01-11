@@ -27,10 +27,6 @@ public class ArticleController {
         this.commentService = commentService;
     }
 
-    // # 기능 수정(view)입니다: 01-11
-    // 1. 사용자에게 표기하고 싶은 메세지를 전달할 수 있는 HTML 반환
-    // GetMapping -> send (보낼 때, 사용자가 데이터를 입력할곳에서)
-    // 사용자가 게시글을 생성(입력)하는 곳임(사용자로부터 메세지 전달)
     @GetMapping("/createArticle-view")
     public String createArticleView(Model model) {
         // 아래는 게시판 확인용
@@ -51,9 +47,6 @@ public class ArticleController {
             @RequestParam("classification-id")
             Long classificationId
     ) {
-        // create-view에서 Controller의 create로 보내면
-        // 게시글 목록들을 보기 위해 전체게시판 (/home/1)로 보내줌
-        // ArticleDto article = service.createArticle(title, content, password);
         articleService.create(title, content, password, classificationId);
         return String.format("redirect:/home/%s", classificationId);
     }
@@ -65,12 +58,6 @@ public class ArticleController {
         return "boards/board1Entire";
     }
 
-    // # 기능 이전입니다 : 01-11
-    // /read로 요청을 받으면
-    // article/read.html에 articleList를 포함해 반환하는 메서드
-    // Mapping에 {}를 넣으면 그 안에 들어가 있는 데이터를
-    // 매개변수에 할당해 줄 수 있다
-    // @GetMapping의 {}와, @PathVariable()을 일치시키면 됨
     @GetMapping("/read/{id}")
     public String readOne(
             @PathVariable("id")
@@ -85,9 +72,6 @@ public class ArticleController {
         return "article/read";
     }
 
-    // # 기능 수정(view)입니다: 01-11
-    // /update-view/{id}로 요청 받으면
-    // board/update.html에 article 정보를 포함해 반환하는 메서드
     @GetMapping("/update-view/{id}")
     public String updateView(
             @PathVariable("id")
@@ -118,17 +102,8 @@ public class ArticleController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return String.format("redirect:/update-view/%s", id);
         }
-//        ArticleDto dto = articleService.updateArticle(id, title, content, password);
-//        if (dto == null) {
-//            // service의 dto의 비밀번호 matching에서 오류가 생긴다면
-//            // 오류 메세지 출력(update.html에 표시) 및 다시 수정 페이지로 리디렉트
-//            redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
-//            return String.format("redirect:/update-view/%s", id);
-//        }
-//        return String.format("redirect:/read/%s", dto.getId());
     }
 
-    // # 기능 수정(view)입니다 : 01-11
     @GetMapping("/delete-view/{id}")
     public String deleteView(
             @PathVariable("id")
@@ -139,7 +114,6 @@ public class ArticleController {
         return "article/delete";
     }
 
-    // #기능 수정입니다: 01-11
     @PostMapping("/delete/{id}")
     public String delete(
             @PathVariable("id")
@@ -158,14 +132,5 @@ public class ArticleController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return String.format("redirect:/delete-view/%s", id);
         }
-//        if (articleService.deleteArticle(id, password)) {
-//            return "redirect:/home/1";
-//        }
-//        else {
-//            // 비밀번호 불일치시, 에러메세지 출력 및 delete-view로 리디렉트
-//            redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
-//            return String.format("redirect:/delete-view/%s", id);
-//        }
     }
-
 }

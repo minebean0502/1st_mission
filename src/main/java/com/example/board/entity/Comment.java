@@ -18,5 +18,4 @@ public class Comment {
     // Comment.articleNum <-> article.Id와 일치
     @ManyToOne
     private Article articleNum;
-
 }

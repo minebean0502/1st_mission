@@ -46,36 +46,4 @@ public class BoardController {
         model.addAttribute("board", board);
         return "boards/boardOne";
     }
-
-    /* #기능 수정(제거): 01-11-08:22
-    // 위의 boardOne에 모두 구현됨
-
-    @RequestMapping("/home/3")
-    public String board3Develop(Model model) {
-        System.out.println("home/3가 실행되었음");
-        List<Article> articles = articleService.getArticleByClassId(3L);
-        model.addAttribute("articleList", articles);
-        return "boards/board3Develop";
-    }
-    @RequestMapping("/home/4")
-    public String board4Daily(Model model) {
-        System.out.println("home/4가 실행되었음");
-        List<Article> articles = articleService.getArticleByClassId(4L);
-        model.addAttribute("articleList", articles);
-        return "boards/board2Free";
-    }
-    @RequestMapping("/home/5")
-    public String board5Trouble(Model model) {
-        System.out.println("home/5가 실행되었음");
-        List<Article> articles = articleService.getArticleByClassId(5L);
-        model.addAttribute("articleList", articles);
-        return "boards/board2Free";
-    }
-
-//    @RequestMapping("/home/6")
-//    public String profiles() {
-//        System.out.println("/home/3가 실행되었음");
-//        return "profile.html";
-//    }
-     */
 }
