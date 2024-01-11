@@ -25,7 +25,7 @@ public class Article {
 
     // Comment.articleNum <-> article.Id와 일치
     // 나중에 Comment에서 필요한 context랑 password 가져올거임
-    @OneToMany(mappedBy = "articleNum")
+    @OneToMany(mappedBy = "articleNum", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> attachedComment;
 
     // 01-11-07:33 추가
