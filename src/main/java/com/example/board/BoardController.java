@@ -1,10 +1,12 @@
 package com.example.board;
 
 import com.example.board.entity.Article;
+import com.example.board.entity.Board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +25,7 @@ public class BoardController {
 
     @RequestMapping("home")
     public String homepage() {
-        return "home.html";
+        return "home";
     }
 
     @RequestMapping("home/1")
@@ -31,13 +33,23 @@ public class BoardController {
         System.out.println("home/1가 실행되었음");
         return "boards/board1Entire";
     }
-    @RequestMapping("/home/2")
-    public String board2Free(Model model) {
-        System.out.println("home/2가 실행되었음");
-        List<Article> articles = articleService.getArticleByClassId(2L);
+    @RequestMapping("/home/{boardId}")
+    public String boardOne(
+            @PathVariable("boardId")
+            Long boardId,
+            Model model) {
+
+        List<Article> articles = articleService.getArticlesByClassificationIdOrderByDesc(boardId);
+        Board board = boardService.getBoardById(boardId);
+
         model.addAttribute("articleList", articles);
-        return "boards/board2Free";
+        model.addAttribute("board", board);
+        return "boards/boardOne";
     }
+
+    /* #기능 수정(제거): 01-11-08:22
+    // 위의 boardOne에 모두 구현됨
+
     @RequestMapping("/home/3")
     public String board3Develop(Model model) {
         System.out.println("home/3가 실행되었음");
@@ -65,4 +77,5 @@ public class BoardController {
 //        System.out.println("/home/3가 실행되었음");
 //        return "profile.html";
 //    }
+     */
 }

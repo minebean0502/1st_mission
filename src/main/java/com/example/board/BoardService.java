@@ -21,4 +21,8 @@ public class BoardService {
     public List<Board> readBoardAll() {
         return boardRepository.findAll();
     }
+
+    public Board getBoardById(Long id) {
+        return boardRepository.findById(id).orElse(null);
+    }
 }

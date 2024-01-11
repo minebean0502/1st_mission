@@ -2,18 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
-  <title>자유 게시판</title>
+  <title th:text="${board.name}">게시판 이름</title>
 </head>
 <body>
-<h1>여기는 개발 게시판 입니다</h1><hr>
+<h1 th:text="'여기는 ' + ${board.name} + ' 입니다'">게시판 제목</h1><hr>
 <!--게시글이 없을 경우-->
 <div th:if="${articleList.isEmpty()}">
   <p>현재 게시글은 비어 있습니다...</p>
 </div>
 <!--게시글이 있을 경우-->
 <div th:unless="${articleList.isEmpty()}" th:each="article: ${articleList}">
-  <p>게시글 번호: [[${article.id}]] &nbsp;&nbsp;&nbsp;게시글 제목: <a th:href="@{/read/{id}(id=${article.id})}"> [[${article.title}]]</a></p>
+  <p>게시글 번호: <span th:text="${article.id}"></span> &nbsp;&nbsp;&nbsp;게시글 제목: <a th:href="@{/read/{id}(id=${article.id})}" th:text="${article.title}"></a></p>
 </div>
+
 
 <hr>
 <a href="/createArticle-view">게시글 생성하기</a><br>

@@ -1,6 +1,7 @@
 package com.example.board;
 
 import com.example.board.dto.ArticleDto;
+import com.example.board.entity.Article;
 import com.example.board.entity.Board;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,9 +58,11 @@ public class ArticleController {
 
     @GetMapping("/home/1")
     public String board1Entire(Model model) {
-        model.addAttribute("articleList", articleService.readArticleAll());
+        List<Article> articles = articleService.getArticlesOrderByIdDesc();
+        model.addAttribute("articleList", articles);
         return "boards/board1Entire";
     }
+
     // # 기능 이전입니다 : 01-11
     // /read로 요청을 받으면
     // article/read.html에 articleList를 포함해 반환하는 메서드

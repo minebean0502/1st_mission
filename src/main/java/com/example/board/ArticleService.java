@@ -75,8 +75,19 @@ public class ArticleService {
 
     // 특정 classification_id에 해당하는 게시글 목록 조회
     // -> articleRepo에도 기능 추가해줘야함
-    public List<Article> getArticleByClassId(Long classificationId) {
-        return articleRepository.findByClassificationId(classificationId);
+//    public List<Article> getArticleByClassId(Long classificationId) {
+//        return articleRepository.findByClassificationId(classificationId);
+//    }
+
+    // 방금 추가된거
+    public List<Article> getArticlesOrderByIdDesc() {
+        // 최신 순으로 전체 게시글 목록 반환
+        return articleRepository.findAllByOrderByIdDesc();
+    }
+
+    public List<Article> getArticlesByClassificationIdOrderByDesc(Long classificationId) {
+        // 최신 순으로 정렬된 게시글 목록 반환
+        return articleRepository.findByClassificationIdOrderByIdDesc(classificationId);
     }
 
 

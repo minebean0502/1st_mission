@@ -9,4 +9,8 @@ import java.util.List;
 // JpaRepository의 기능을 사용해서 데이터베이스와 소통할 수 있다.
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findByClassificationId(Long classificationId);
+
+    List<Article> findByClassificationIdOrderByIdDesc(Long classificationId);
+    List<Article> findAllByOrderByIdDesc();
+
 }
